@@ -29,7 +29,12 @@ Com a aplicação em execução na Ide e o Postman com verbos HTTP para teste po
 
 Ex:
 
+
 Cadastro de secretaria (Método post "http://localhost:8080/secretarias")
+
+Tipos disponíveis atualmente:
+ADMINISTRACAO, FAZENDA, COMUNICACAO, EDUCACAO,
+SAUDE, TRANSPORTE,  LAZER, MEIO_AMBIENTE;
 
 {<br>
     "area": "SAUDE",<br>
@@ -57,11 +62,11 @@ Cadastro de projeto (Método post "http://localhost:8080/projetos")
 <br>
 Cadastro de funcionário (Método post "http://localhost:8080/funcionarios")
 {<br>
-    "nome": "testeADM2",<br>
+    "nome": "Francisco",<br>
 	"cpf": "12345678972",<br>
 	"salario": 1100,<br>
     "idSecretaria": 1,<br>
-	"funcao": "Auxiliar adm",<br>
+	"funcao": "Auxiliar administrativo",<br>
 	"concursado": true<br>
 }
 
