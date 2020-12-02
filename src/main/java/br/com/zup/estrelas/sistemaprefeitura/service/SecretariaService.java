@@ -37,6 +37,14 @@ public class SecretariaService implements ISecretariaService {
 	@Override
 	public MensagemDto adicionaSecretaria(SecretariaDto secretaria) {
 		
+	    //TODO: Idnilson, eu achei muito relevante a sua preocupação
+	    // com as validações de entrada aqui, isso fez com o o seu 
+	    // código ficasse muito bem blindado, eu iria sugerir
+	    // aqui pra que você desse uma olhada nas anotações que são
+	    // uma maneira um pouco mais elegante de fazer isso, mas certamente
+	    // nesse momento você já descobriu isso fazendo o projeto.
+	    // Foi muito bom ter pensado nisso, parabéns.
+	    
 		if(secretaria.getArea() == null || secretaria.getArea().toString().isBlank() || secretaria.getArea().toString().isEmpty()) {
 			return new MensagemDto(AREA_VAZIA);
 		}
@@ -114,7 +122,10 @@ public class SecretariaService implements ISecretariaService {
 	            if(secretariaAlterada.getOrcamentoProjetos() >= secretaria.getOrcamentoProjetos()) {
 	            	return new MensagemDto(ORCAMENTO_PROJETO_INVALIDO);
 	            }
-	            	            
+	            	    
+	            // TODO: Excelente, pensar nessa lógica foi muito importante,
+	            // a sugestão aqui fica pra criação de um método para fazê-lo 
+	            // e só chamá-lo, deixaria o código ainda mais limpo.
 	            List<Funcionario> funcionarios = secretariaAlterada.getFuncionarios();
 	            double totalFolhaPagamento = 0.0;	            
 	            calculaTotalDaFolhaPagamento(funcionarios, idSecretaria, totalFolhaPagamento);
@@ -133,6 +144,7 @@ public class SecretariaService implements ISecretariaService {
 	        return new MensagemDto(SECRETARIA_INEXISTENTE);
 	    }
 	
+	//TODO: Bom uso de um método interno (que faria mais sentido ser privado).
 	public double calculaTotalDaFolhaPagamento(List<Funcionario> funcionarios, Long idSecretaria, double totalFolhaPagamento) {
 		
         for (Funcionario funcionarioCadastrado : funcionarios) {

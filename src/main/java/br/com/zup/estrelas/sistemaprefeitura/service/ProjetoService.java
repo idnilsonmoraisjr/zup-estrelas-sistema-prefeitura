@@ -39,6 +39,7 @@ public class ProjetoService implements IProjetoService {
 	@Override
 	public MensagemDto adicionaProjeto(ProjetoDto projeto) {
 
+	    // TODO: Aqui cabe o mesmo comentário que fiz na secretaria.
 		if(projeto.getNome() == null || projeto.getNome().isBlank() || projeto.getNome().isEmpty()) {
 			return new MensagemDto(NOME_VAZIO);
 		}
@@ -131,6 +132,9 @@ public class ProjetoService implements IProjetoService {
 				return new MensagemDto(PROJETO_CONCLUIDO);
 			}
 		}
+		
+		// FIXME: Aqui seria legal usar o fail first, ou seja, testar a negativa do ifpresent e já 
+		// jogar esse erro caso ela ocorresse.
 		return new MensagemDto(PROJETO_INEXISTENTE);
 	}
 	

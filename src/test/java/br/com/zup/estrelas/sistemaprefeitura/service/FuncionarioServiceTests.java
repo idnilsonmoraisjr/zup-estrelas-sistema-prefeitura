@@ -102,6 +102,9 @@ public class FuncionarioServiceTests {
 
 		FuncionarioDto funcionarioDto = dadosFuncionarioDto();
 
+		
+		// FIXME: Faltou mocar a chamada ao secretariaRepository que acontece na linha 69 
+		// do funcionário service.
 		Mockito.when(funcionarioRepository.existsByCpf(funcionarioDto.getCpf())).thenReturn(false);
 			
 		MensagemDto mensagemRetornada = funcionarioService.adicionaFuncionario(funcionarioDto);
@@ -113,6 +116,8 @@ public class FuncionarioServiceTests {
 	@Test
 	public void naoCadastrarUmFuncionarioExistente() {
 		
+	    // FIXME: Faltou mocar a chamada ao secretariaRepository que acontece na linha 69 
+        // do funcionário service.
 		FuncionarioDto funcionarioDto = dadosFuncionarioDto();
 
 		Mockito.when(funcionarioRepository.existsByCpf(funcionarioDto.getCpf())).thenReturn(true);
@@ -234,6 +239,8 @@ public class FuncionarioServiceTests {
 		
 		MensagemDto mensagemEsperada = new MensagemDto(FUNCIONARIO_INEXISTENTE);
 
+		// FIXME: Aqui talvez faria mais sentido testar se o FuncionarioEncontrado
+		// é nullo. "Assert.assertNull(object);"
 		Assert.assertEquals("Deve retornar uma mensagem de falha ao buscar funcionario", mensagemEsperada, mensagemRetornada);
 	
 	}
