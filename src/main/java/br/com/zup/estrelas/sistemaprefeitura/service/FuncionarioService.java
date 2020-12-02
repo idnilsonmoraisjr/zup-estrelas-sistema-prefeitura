@@ -41,6 +41,7 @@ public class FuncionarioService implements IFuncionarioService {
 	@Override
 	public MensagemDto adicionaFuncionario(FuncionarioDto funcionario) {
 		
+	    //TODO: Aqui cabe o mesmo comentário das demais classes de serviço.
 		if(funcionario.getNome() == null || funcionario.getNome().isBlank() || funcionario.getNome().isEmpty()) {
 			return new MensagemDto(NOME_VAZIO);
 		}
@@ -112,6 +113,7 @@ public class FuncionarioService implements IFuncionarioService {
 		
 			Optional<Funcionario> funcionarioConsultado = funcionarioRepository.findById(idFuncionario);
 			Funcionario funcionarioASerRemovido = funcionarioConsultado.get();
+			//TODO: Bom uso de um método interno.
 			atualizaOrcamentoSecretariaAoRemover(funcionarioASerRemovido);
 			funcionarioRepository.deleteById(idFuncionario);
 			
@@ -131,6 +133,8 @@ public class FuncionarioService implements IFuncionarioService {
 				Funcionario funcionarioAtual = funcionarioRepository.findById(idFuncionario).get();
 				Secretaria secretariaConsultada = secretariaRepository.findById(funcionario.getIdSecretaria()).get();
 				
+				//FIXME: Não faz sentido nomear essa variável como 
+				// uma constante.
 				final Double DIFERENCA_SALARIAL = calculaDiferencaSalarial (funcionario, funcionarioAlterado);
 				
 				if(secretariaConsultada.getOrcamentoFolha() < funcionario.getSalario()) {
@@ -151,6 +155,8 @@ public class FuncionarioService implements IFuncionarioService {
 	    		
 	            if(idSecretariaNova != funcionarioAtual.getSecretaria().getIdSecretaria()) {
 	            	
+	                    //TODO: Que tal otimizar ainda mais criando um método aqui 
+	                    // dentro que contivesse todo esse código.
 	            		atualizaOrcamentoAcrescentando(funcionarioAtual, funcionarioAlterado.getSecretaria(), DIFERENCA_SALARIAL);
 		         		atualizaOrcamentoDiminuindo( funcionario, secretariaConsultada);
 	         		
@@ -163,6 +169,9 @@ public class FuncionarioService implements IFuncionarioService {
 	            	  
 	            	secretariaAntiga = atualizaOrcamentoDaFolhaAntiga( funcionario, funcionarioAlterado);
 	            }
+	            
+	            //TODO: Que tal otimizar ainda mais criando um método aqui 
+                // dentro que contivesse todo esse código.
 	            funcionarioAlterado.setNome(funcionario.getNome());
 	            funcionarioAlterado.setSalario(funcionario.getSalario());
 	            funcionarioAlterado.setFuncao(funcionario.getFuncao());
@@ -171,6 +180,11 @@ public class FuncionarioService implements IFuncionarioService {
 	            secretariaRepository.save(secretariaAntiga);
 	            return new MensagemDto(FUNCIONARIO_ALTERADO_COM_SUCESSO);
 	        }
+		
+		    // FIXME: Aqui seria legal seguir a lógica do fail first, ou seja, no 
+		    // primeiro if ali em cima testar a negativa e já retornar funcionário 
+		    // inexistente, o bloco de if é muito grande e até entender que essa linha 
+		    // aqui corresponde à uma falha se leva algum tempo.
 	        return new MensagemDto(FUNCIONARIO_INEXISTENTE);
 	    }
 	
@@ -192,6 +206,7 @@ public class FuncionarioService implements IFuncionarioService {
 		return secretariaDoFuncionario;
 	}
 	
+	//FIXME: Todos esses métodos podem ser privados.
 	public Double calculaDiferencaSalarial (FuncionarioDto funcionario, Funcionario funcionarioAlterado) {
 		
 		Double salarioAtual =  funcionarioAlterado.getSalario();

@@ -21,6 +21,13 @@ import br.com.zup.estrelas.sistemaprefeitura.service.IProjetoService;
 
 @RestController
 @RequestMapping("/projetos")
+//TODO: Idnilson, aqui eu consigo compreender por quê tratou os projetos
+//como um recurso independente, mas dado que ele só pode pertencer à uma
+//secretaria e isso não muda, seria interessante tratá-lo como um subrecurso
+//de secretaria, seu endpoint seria algo como:
+///secretarias/{id}/projetos. Dê uma olhada na referência do portal
+//desenvolvimento pra web para entender melhor por quê isso faz mas sentido como um subrecurso
+//e qualquer dúvida pode falar comigo.
 public class ProjetoController {
 
 	@Autowired

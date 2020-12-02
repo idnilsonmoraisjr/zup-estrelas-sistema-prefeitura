@@ -30,6 +30,7 @@ public class ProjetoServiceTests {
 	private static final String PROJETO_JA_CADASTRADO = "Falha no cadastro. Já existe um projeto com o mesmo nome.";
 	private static final String DESCRICAO_VAZIO = "Descrição do projeto não pode estar vazia.";
 	
+	// FIXME: Trocar por @Mock.
 	@Autowired 
 	private ProjetoRepository projetoRepository;
 	
@@ -93,6 +94,7 @@ public class ProjetoServiceTests {
 	}
 	
 	@Test
+	// FIXME: LEtra misucula aqui.
 	public void AdicionaProjetoComSucesso() {
 		
 		ProjetoDto projetoDto = dadosProjetoDto();

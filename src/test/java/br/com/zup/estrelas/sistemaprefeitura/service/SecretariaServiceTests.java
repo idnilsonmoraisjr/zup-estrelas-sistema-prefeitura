@@ -159,6 +159,7 @@ public class SecretariaServiceTests {
 		Optional<Secretaria> secretariaConsultada = Optional.of(secretaria);
 		Mockito.when(secretariaRepository.findById(1L)).thenReturn(secretariaConsultada);
 		
+		// FIXME: Dê uma revisada pq aqui está parando na validação de folha.
 		MensagemDto mensagemRetornada = secretariaService.alteraSecretaria(1L, secretariaDto);
 		MensagemDto mensagemEsperada = new MensagemDto(SECRETARIA_ALTERADA_COM_SUCESSO );
 		

@@ -20,6 +20,7 @@ import br.com.zup.estrelas.sistemaprefeitura.service.IFuncionarioService;
 
 @RestController
 @RequestMapping("/funcionarios")
+//TODO: Aqui cabe o mesmo comentário dos projetos.
 public class FuncionarioController {
 
 	@Autowired
